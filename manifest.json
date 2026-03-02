@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Tab Town",
+  "version": "1.0",
+  "description": "A custom new tab page, using catppucin palette, for personal use",
+  "author": "strawberrysnails",
+  "homepage_url": "https://strawberrysnails.github.io/",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  },
+  "permissions": [
+    "storage"
+  ]
+}

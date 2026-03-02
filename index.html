@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TabTown</title>
+  <link rel="stylesheet" href="styles.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> 
+  <meta name="description" content="">
+
+</head>
+
+<body>
+  <div onclick="openSettings()" id="cog">⚙</div>
+<div id="settings">
+  <h2>Settings</h2>
+  <label>Page:
+    <select id="settingsPageSelect" onchange="renderSettingsPanel()">
+      <option value="One">Page I</option>
+      <option value="Two">Page II</option>
+      <option value="Three">Page III</option>
+    </select>
+  </label>
+  <div id="settingsCategoryList"></div>  <!-- moved inside -->
+</div>
+<main>
+
+  <div class="inner">
+    
+  <div id="One" class="tabcontent">
+
+</div>
+
+<div id="Two" class="tabcontent">
+
+</div>
+
+<div id="Three" class="tabcontent">
+
+</div>
+    </div>
+  
+    <div class="tab">
+  <button class="tablinks active" onclick="openCity(event, 'One')">I</button>
+  <button class="tablinks" onclick="openCity(event, 'Two')">II</button>
+  <button class="tablinks" onclick="openCity(event, 'Three')">III</button>
+      <div id="info">info</div>
+</div>
+  </main>
+  <img id="cat" src="cat.png" alt="" />
+  <script src="app.js"></script>
+
+</body>
+
+</html>
