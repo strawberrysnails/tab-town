@@ -5,6 +5,15 @@
   "description": "A custom new tab page, using catppucin palette, for personal use",
   "author": "strawberrysnails",
   "homepage_url": "https://strawberrysnails.github.io/",
+ "browser_specific_settings": {
+    "gecko": {
+    "id": "tabtownbystrawberrysnails@firefox",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
+    }
+  },
   "chrome_url_overrides": {
     "newtab": "index.html"
   },

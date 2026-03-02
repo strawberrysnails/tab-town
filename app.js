@@ -3,6 +3,16 @@ const tabs = document.querySelectorAll('.tablinks');
 const pages = ['One', 'Two', 'Three'];
 let currentPage = 0;
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function openCity(evt, cityName) {
   tabs.forEach(t => t.classList.remove('active'));
   evt.currentTarget.classList.add('active');
@@ -71,10 +81,10 @@ function renderPage(pageId) {
     <div class="page-categories">
       ${page.categories.map((cat, i) => `
         <div class="category">
-          <h3>${cat.name}</h3>
+          <h3>${escapeHtml(cat.name)}</h3>
           <ul>
             ${cat.links.map(link => `
-              <li><a href="${link.url}" target="_blank">${link.label}</a></li>
+              <li><a href="${escapeHtml(link.url)}" target="_blank">${escapeHtml(link.label)}</a></li>
             `).join('')}
           </ul>
         </div>
@@ -91,7 +101,6 @@ function renderSettingsPanel() {
   const pageId = document.getElementById('settingsPageSelect').value;
   const categories = data.pages[pageId].categories;
   const settingsContainer = document.getElementById('settingsCategoryList');
-
   settingsContainer.innerHTML = `
     <div class="settings-image">
       <h3>Page Image</h3>
@@ -105,11 +114,11 @@ function renderSettingsPanel() {
     </div>
     ${categories.map((cat, i) => `
       <div class="settings-category">
-        <input type="text" value="${cat.name}" onchange="renameCategory('${pageId}', ${i}, this.value)" />
+        <input type="text" value="${escapeHtml(cat.name)}" onchange="renameCategory('${pageId}', ${i}, this.value)" />
         <ul>
           ${cat.links.map((link, j) => `
             <li>
-              <span>${link.label}</span>
+              <span>${escapeHtml(link.label)}</span>
               <button onclick="removeLink('${pageId}', ${i}, ${j})">✕</button>
             </li>
           `).join('')}
