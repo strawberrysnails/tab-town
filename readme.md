@@ -1,6 +1,6 @@
 # Tab Town
 * Inspired by my website name, snails.town
-* A personal custom new tab page Firefox extension made for personal use.
+* A custom new tab page Firefox extension made for personal use.
 * This was created and intended for my own personal use, if you want to fork and add features, feel free.
 
 # Usage
