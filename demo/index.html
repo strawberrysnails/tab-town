@@ -4,15 +4,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TabTown</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>TabTown Demo</title>
+  <link rel="stylesheet" href="/styles.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> 
   <meta name="description" content="">
+<style>
 
+    footer{
+        padding-top: 20px;
+    }
+    footer a{
+        color:aliceblue;
+    }
+
+    footer a:hover{
+        color: #f9e2af;
+    }
+</style>
 </head>
 
 <body>
-  <div id="cog">⚙</div>
 <div id="settings">
   <h2>Settings</h2>
   <label>Page:
@@ -22,7 +33,7 @@
   <option value="Three">Page III</option>
 </select>
   </label>
-  <div id="settingsCategoryList"></div>  <!-- moved inside -->
+  <div id="settingsCategoryList"></div>
 </div>
 <main>
 
@@ -48,10 +59,11 @@
 <button class="tablinks">III</button>
       <div id="info">info</div>
 </div>
+
   </main>
+  <footer style="text-align: center;">Created by <a href="https://strawberrysnails.github.io">strawberrysnails</a> &#9825; <a href="https://github.com/strawberrysnails/steam-widgets">Source Code</a></footer>
   <img id="cat" src="cat.png" alt="" />
-  <script src="app.js"></script>
+  <script src="/demo/demo.js"></script>
 
 </body>
-
 </html>

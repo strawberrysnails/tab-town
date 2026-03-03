@@ -17,7 +17,7 @@ function openCity(evt, cityName) {
   tabs.forEach(t => t.classList.remove('active'));
   evt.currentTarget.classList.add('active');
   currentPage = pages.indexOf(cityName);
-  container.scrollTo({ left: window.innerWidth * currentPage, behavior: 'smooth' });
+  container.scrollTo({ left: 1000 * currentPage, behavior: 'smooth' });
 }
 
 let isScrolling = false;
@@ -41,7 +41,39 @@ document.addEventListener('wheel', (e) => {
 document.addEventListener("DOMContentLoaded", () => {
   updateDateTime();
   setInterval(updateDateTime, 1000);
-  renderAll()
+  renderAll();
+
+  document.getElementById('cog').addEventListener('click', openSettings);
+  document.getElementById('settingsPageSelect').addEventListener('change', renderSettingsPanel);
+
+  tabs[0].addEventListener('click', (e) => openCity(e, 'One'));
+  tabs[1].addEventListener('click', (e) => openCity(e, 'Two'));
+  tabs[2].addEventListener('click', (e) => openCity(e, 'Three'));
+
+  document.getElementById('settingsCategoryList').addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  const action = btn.dataset.action;
+  const page = btn.dataset.page;
+  const cat = parseInt(btn.dataset.cat);
+  const link = parseInt(btn.dataset.link);
+
+  if (action === 'addLink') addLink(page, cat);
+  if (action === 'removeLink') removeLink(page, cat, link);
+  if (action === 'removeImage') removeImage(page);
+});
+
+document.getElementById('settingsCategoryList').addEventListener('change', (e) => {
+  const input = e.target.closest('input[data-action="rename"]');
+  if (input) {
+    renameCategory(input.dataset.page, parseInt(input.dataset.cat), input.value);
+  }
+
+  const fileInput = e.target.closest('input[data-action="uploadImage"]');
+  if (fileInput) {
+    uploadImage(fileInput.dataset.page, fileInput);
+  }
+});
 });
 
 function updateDateTime() {
@@ -107,25 +139,25 @@ function renderSettingsPanel() {
       ${data.pages[pageId].image 
         ? `<img src="${data.pages[pageId].image}" style="width:100%;margin-bottom:0px;border-radius:5px;" />` 
         : ''}
-      <input type="file" accept="image/*" onchange="uploadImage('${pageId}', this)" />
+      <input type="file" accept="image/*" data-action="uploadImage" data-page="${pageId}" />
       ${data.pages[pageId].image 
-        ? `<button onclick="removeImage('${pageId}')">Remove Image</button>` 
+        ? `<button data-action="removeImage" data-page="${pageId}">Remove Image</button>`
         : ''}
     </div>
     ${categories.map((cat, i) => `
       <div class="settings-category">
-        <input type="text" value="${escapeHtml(cat.name)}" onchange="renameCategory('${pageId}', ${i}, this.value)" />
+        <input type="text" value="${escapeHtml(cat.name)}" data-action="rename" data-page="${pageId}" data-cat="${i}" />
         <ul>
           ${cat.links.map((link, j) => `
             <li>
               <span>${escapeHtml(link.label)}</span>
-              <button onclick="removeLink('${pageId}', ${i}, ${j})">✕</button>
+             <button data-action="removeLink" data-page="${pageId}" data-cat="${i}" data-link="${j}">✕</button>
             </li>
           `).join('')}
         </ul>
         <input type="text" id="label-${pageId}-${i}" placeholder="Label" />
         <input type="text" id="url-${pageId}-${i}" placeholder="https://" />
-        <button onclick="addLink('${pageId}', ${i})">Add Link</button>
+        <button data-action="addLink" data-page="${pageId}" data-cat="${i}">Add Link</button>
       </div>
     `).join('')}
   `;
