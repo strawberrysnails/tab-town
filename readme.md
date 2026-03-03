@@ -1,5 +1,5 @@
 # Tab Town
-* Inspired by my website name, snails.town
+* Heavilty inspired by [catppuccin-startpage](https://github.com/pivoshenko/catppuccin-startpage)
 * A custom new tab page Firefox extension made for personal use.
 * This was created and intended for my own personal use, if you want to fork and add features, feel free.
 
