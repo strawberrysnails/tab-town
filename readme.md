@@ -8,3 +8,6 @@ Open a new tab. Scroll or use the tab buttons to switch pages. Click ⚙ to open
 
 # Installation
 Submit the zipped extension to addons.mozilla.org as unlisted, wait for signing, then install the downloaded .xpi.
+
+# Demo
+View the demo [here](https://strawberrysnails.github.io/tab-town/). 
