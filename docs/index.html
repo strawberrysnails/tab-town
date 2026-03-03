@@ -5,11 +5,175 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TabTown Demo</title>
-  <link rel="stylesheet" href="/styles.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> 
   <meta name="description" content="">
 <style>
+:root {
+  --red: #f38ba8;
+  --peach: #fab387;
+  --yellow: #f9e2af;
+  --green: #a6e3a1;
+  --teal: #94e2d5;
+  --blue: #89b4fa;
+  --lavender: #b4befe;
+  --pink: #f5c2e7;
+  --mauve: #cba6f7;
+  --rosewater: #f5e0dc;
+  --text: #cdd6f4;
+  --subtext1: #bac2de;
+  --subtext0: #a6adc8;
+  --overlay2: #9399b2;
+  --surface2: #585b70;
+  --surface1: #45475a;
+  --surface0: #313244;
+  --base: #1e1e2e;
+  --mantle: #181825;
+  --crust: #11111b;
+}
 
+body {
+  background-color: var(--mantle);
+  color: var(--text);
+  font-family: monospace;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.inner {
+  display: flex;
+  overflow-x: hidden;
+  background-color: var(--base);
+  border-radius: 5px;
+  width: 1000px;
+  height: 400px;
+  margin-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.tab {
+  overflow: hidden;
+  background-color: var(--surface0);
+  border-radius: 5px;
+  height: 2rem;
+  display: flex;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: 0.3s;
+  font-size: 12px;
+  border-top: 2px solid transparent;
+  color: var(--text);
+}
+
+.tab button:hover {
+  background-color: var(--surface1);
+  border-top: 2px solid var(--blue);
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  border-top: 2px solid var(--blue);
+}
+
+.pages-container {
+  display: flex;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  width: 100vw;
+}
+
+.tabcontent {
+  display: flex;
+  flex-direction: row;
+  min-width: 1000px;
+  scroll-snap-align: start;
+  overflow-y: hidden;
+}
+
+.page-image {
+  width: 260px;
+  height: 395px;
+  margin-right: 20px;
+  overflow-y: hidden;
+  border-left: 2px solid var(--red);
+}
+
+.page-image img {
+  width: 250px;
+  height: 399px;
+  object-fit: cover;
+  overflow-y: hidden;
+}
+
+.image-placeholder {
+  width: 260px;
+  height: 399px;
+  background-color: var(--surface1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--subtext0);
+}
+
+.page-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+#info {
+  margin-left: auto;
+  margin-right: 10px;
+  padding-top: 10px;
+  font-size: 12px;
+}
+.category {
+  margin-top:10px;
+  border-top: var(--mauve) 2px solid;
+}
+
+.category h3 {
+  font-size: 20px;
+}
+
+.category ul {
+  padding-bottom: 5px;
+  padding-left: 0px;
+}
+
+.category li {
+  display: inline-block;
+  list-style-type: none;
+}
+
+.category li a {
+  text-decoration: none;
+  color: var(--crust);
+  padding: 5px 1rem 5px 1rem;
+  border-radius: 10px;
+  background-color: #b4befe;
+  font-size: 16px;
+  transition: all ease-in-out 0.2s;
+  display: inline-block;
+  box-shadow: var(--crust) 5px 5px 5px;
+}
+
+.category li a:hover {
+  transform: translateY(3px);
+  background-color: var(--rosewater);
+  box-shadow: 0px 0px 5px;
+}
     footer{
         padding-top: 20px;
     }
@@ -20,21 +184,19 @@
     footer a:hover{
         color: #f9e2af;
     }
+
+    #cat {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  z-index: 1;
+  pointer-events: none;
+}
 </style>
 </head>
 
 <body>
-<div id="settings">
-  <h2>Settings</h2>
-  <label>Page:
-   <select id="settingsPageSelect">
-  <option value="One">Page I</option>
-  <option value="Two">Page II</option>
-  <option value="Three">Page III</option>
-</select>
-  </label>
-  <div id="settingsCategoryList"></div>
-</div>
+
 <main>
 
   <div class="inner">
@@ -63,7 +225,7 @@
   </main>
   <footer style="text-align: center;">Created by <a href="https://strawberrysnails.github.io">strawberrysnails</a> &#9825; <a href="https://github.com/strawberrysnails/tab-town">Source Code</a></footer>
   <img id="cat" src="cat.png" alt="" />
-  <script src="/demo/demo.js"></script>
+  <script src="demo.js"></script>
 
 </body>
 </html>
